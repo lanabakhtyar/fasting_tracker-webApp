@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Fasting</title>
+</head>
+
+    <body>
+        <div class="container">
+            <h2>Fasting Tracker</h2>
+            {% if session %}
+                <p>Started fasting at: {{ session.start_time }}</p>
+                {% if duration %}
+                    <p>Fasting ended at: {{ session.end_time }}</p>
+                    <p>Total fasting duration: {{ duration|floatformat:2 }} minutes</p>
+                {% else %}
+                    <p>Fasting is currently ongoing...</p>
+                    <a href="{% url 'end_fasting' %}" class="btn btn-danger">End Fasting</a>
+                {% endif %}
+            {% else %}
+                <p>No active fasting sessions found.</p>
+                <a href="{% url 'start_fasting' %}" class="btn btn-success">Start Fasting</a>
+            {% endif %}
+            <a href="{% url 'index' %}" class="btn btn-secondary mt-3">Back to Home</a>
+        </div>
+    </body>
+
+</html>

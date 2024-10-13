@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fasting Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .btn {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fasting Tracker</h1>
+        <p>Track your fasting hours easily</p>
+
+        {% if user.is_authenticated %}
+            <h3>Welcome, {{ user.username }}!</h3>
+            <div>
+                <a href="{% url 'start_fasting' %}" class="btn btn-success">Start Fasting</a>
+                <a href="{% url 'end_fasting' %}" class="btn btn-danger">End Fasting</a>
+            </div>
+
+        {% else %}
+            <p>Please log in to start tracking your fasting hours.</p>
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        {% endif %}
+    </div>
+</body>
+</html>
